@@ -32,6 +32,16 @@ Help text:
 ```
 > boulder_stats -h
 
+INFO: Showing help with the command 'cli.py -- --help'.
+
+NAME
+    cli.py - Main-function.
+
+SYNOPSIS
+    cli.py -
+
+DESCRIPTION
+    Main-function.
 
 
 ```

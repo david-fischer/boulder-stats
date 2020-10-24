@@ -15,3 +15,7 @@ except ImportError:
 def cli_main():
     """Entry point for setup.py."""
     Fire(main)
+
+
+if __name__ == "__main__":
+    cli_main()
