@@ -9,6 +9,22 @@ import jinja2
 JINJA_BLOCK_REGEX = r"<!-- jinja-block (\w*)(.*)jinja-block \1-->"
 JINJA_OUT_REGEX = r"<!-- jinja-out %s.*-->"
 
+
+def get_reqs_urls_summaries():
+    with open("requirements.txt") as file:
+        req_string = file.read()
+    reqs = re.findall("^[A-Za-z_0-9]+", req_string, flags=re.MULTILINE)
+    urls = []
+    summaries = []
+    for package in reqs:
+        pip_info = execute_command(f"pip show {package}")
+        url = re.search("^Home-page: (.*)", pip_info, re.MULTILINE)[1]
+        summary = re.search("^Summary: (.*)", pip_info, re.MULTILINE)[1]
+        urls.append(url)
+        summaries.append(summary)
+    return reqs, urls, summaries
+
+
 # https://stackoverflow.com/questions/14693701/how-can-i-remove-the-ansi-escape-sequences-from-a-string-in-python
 def escape_ansi(string):
     """Remove ansi-codes from help text."""
@@ -66,6 +82,11 @@ def get_render_kwargs():
     #    for name in sorted(glob.glob("screenshots/*/"))
     # ]
     comment_tag = "<!-- -->"
+    reqs, urls, summaries = get_reqs_urls_summaries()
+    dep_strings = [
+        f" * [{req}]({url}) - {summary}"
+        for req, url, summary in zip(reqs, urls, summaries)
+    ]
     return {**locals(), "execute_command": execute_command}
 
 
