@@ -35,13 +35,19 @@ Help text:
 INFO: Showing help with the command 'cli.py -- --help'.
 
 NAME
-    cli.py - Main-function.
+    cli.py
 
 SYNOPSIS
-    cli.py -
+    cli.py COMMAND
 
-DESCRIPTION
-    Main-function.
+COMMANDS
+    COMMAND is one of the following:
+
+     start_bot
+       Start bot.
+
+     collect_data
+       Use scheduler to periodically collect data.
 
 
 ```
