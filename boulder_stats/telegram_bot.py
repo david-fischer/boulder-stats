@@ -2,6 +2,7 @@
 
 import json
 import logging
+from secrets import compare_digest
 
 import pandas as pd
 from telegram.ext import CommandHandler, Updater
@@ -10,9 +11,18 @@ from boulder_stats.data_analysis import Analyzer
 from boulder_stats.utils import next_weekday
 
 with open("../secrets.json") as file:
-    TOKEN = json.load(file)["token"]
+    SECRETS = json.load(file)
+    print(SECRETS)
 
-updater = Updater(token=TOKEN, use_context=True)
+
+def save_secrets():
+    """Save current ``SECRETS```as .json-file."""
+    print(SECRETS)
+    with open("../secrets.json", "w") as file:  # pylint: disable=redefined-outer-name
+        json.dump(SECRETS, file, indent=4)
+
+
+updater = Updater(token=SECRETS["token"], use_context=True)
 dispatcher = updater.dispatcher
 
 logging.basicConfig(
@@ -45,7 +55,30 @@ def plot(update, context):
         context.bot.send_photo(chat_id=update.effective_chat.id, photo=plot_fig)
 
 
+def unlock(update, context):
+    """Unlock bot if user provides correct password as first arg."""
+    if str(update.effective_chat.id) in SECRETS["chat_ids"]:
+        context.bot.send_message(
+            chat_id=update.effective_chat.id, text="Bot is already unlocked."
+        )
+        return
+    args = context.args
+    password = args[0] if len(args) == 1 else None
+    if compare_digest(password, SECRETS["unlock_pw"]):
+        chat = update.effective_chat
+        chat_name = chat.title or chat.first_name + " " + chat.last_name
+        SECRETS["chat_ids"][str(chat.id)] = chat_name
+        save_secrets()
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Bot unlocked.")
+    else:
+        context.bot.send_message(
+            chat_id=update.effective_chat.id, text="Wrong password."
+        )
+
+
 plot_handler = CommandHandler("plot", plot)
 dispatcher.add_handler(plot_handler)
+unlock_handler = CommandHandler("unlock", unlock)
+dispatcher.add_handler(unlock_handler)
 
 updater.start_polling()
