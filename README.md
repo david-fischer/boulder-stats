@@ -59,8 +59,6 @@ DESCRIPTION
 {{ "\n".join(dep_strings) }}
 jinja-block deps-->
 <!-- jinja-out deps start-->
-
-
  * [apscheduler](https://github.com/agronholm/apscheduler) - In-process task scheduler with Cron-like capabilities
  * [attrs](https://www.attrs.org/) - Classes Without Boilerplate
  * [beautifulsoup4](http://www.crummy.com/software/BeautifulSoup/bs4/) - Screen-scraping library
