@@ -1,1 +1,1 @@
-recursive-include boulder_stats *.png
+recursive-include boulder_stats *.png *.json *.h5
