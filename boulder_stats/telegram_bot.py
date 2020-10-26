@@ -12,22 +12,12 @@ from boulder_stats.utils import next_weekday
 
 with open("../secrets.json") as file:
     SECRETS = json.load(file)
-    print(SECRETS)
 
 
 def save_secrets():
     """Save current ``SECRETS```as .json-file."""
-    print(SECRETS)
     with open("../secrets.json", "w") as file:  # pylint: disable=redefined-outer-name
         json.dump(SECRETS, file, indent=4)
-
-
-updater = Updater(token=SECRETS["token"], use_context=True)
-dispatcher = updater.dispatcher
-
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
-)
 
 
 def start(update, context):
@@ -42,6 +32,7 @@ def plot(update, context):
 
     Triggered with /command *args. Posts one plot for each arg.
     """
+    print(update.effective_chat.id)
     analyzer = Analyzer()
     week_days = {"mo": 0, "di": 1, "mi": 2, "do": 3, "fr": 4, "sa": 5, "so": 6}
     arg_to_date = {"heute": pd.Timestamp.now().date()}
@@ -76,9 +67,23 @@ def unlock(update, context):
         )
 
 
-plot_handler = CommandHandler("plot", plot)
-dispatcher.add_handler(plot_handler)
-unlock_handler = CommandHandler("unlock", unlock)
-dispatcher.add_handler(unlock_handler)
+def start_bot():
+    """Start bot."""
+    updater = Updater(token=SECRETS["token"], use_context=True)
+    dispatcher = updater.dispatcher
 
-updater.start_polling()
+    logging.basicConfig(
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=logging.INFO,
+    )
+
+    plot_handler = CommandHandler("plot", plot)
+    dispatcher.add_handler(plot_handler)
+    unlock_handler = CommandHandler("unlock", unlock)
+    dispatcher.add_handler(unlock_handler)
+
+    updater.start_polling()
+
+
+if __name__ == "__main__":
+    start_bot()
