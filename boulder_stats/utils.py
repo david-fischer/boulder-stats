@@ -67,7 +67,6 @@ def get_colors_for_df(df, list_of_colors=None, fix_max=None):
 def add_numbers_to_boxplot(df, color=None):
     """Add entries of df as text at appropriate height and with color ``color[i]`` in plot."""
     for i, (index, data) in enumerate(df.items()):
-        print(i)
         plt.text(
             x=index,
             y=data + 1.0,
