@@ -7,9 +7,9 @@ from secrets import compare_digest
 import pandas as pd
 from telegram.ext import CommandHandler, Updater
 
-from data_analysis import Analyzer
-from utils import next_weekday
-from paths import SECRET_PATH
+from .data_analysis import Analyzer
+from .utils import next_weekday
+from .paths import SECRET_PATH
 
 with open(SECRET_PATH) as file:
     SECRETS = json.load(file)

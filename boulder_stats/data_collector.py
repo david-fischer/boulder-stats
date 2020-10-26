@@ -7,8 +7,8 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.remote.command import Command
 
-from utils import is_future, is_open
-from paths import HDF_PATH
+from .utils import is_future, is_open
+from .paths import HDF_PATH
 
 
 def visitor_df(html_source, date, max_slots=18):

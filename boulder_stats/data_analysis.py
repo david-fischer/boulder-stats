@@ -6,12 +6,12 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from utils import (
+from .utils import (
     box_plot_df,
     get_colors_for_df,
     get_slots,
 )
-from paths import HDF_PATH
+from .paths import HDF_PATH
 
 
 def nice_plot(df):
