@@ -7,16 +7,17 @@ from secrets import compare_digest
 import pandas as pd
 from telegram.ext import CommandHandler, Updater
 
-from boulder_stats.data_analysis import Analyzer
-from boulder_stats.utils import next_weekday
+from data_analysis import Analyzer
+from utils import next_weekday
+from paths import SECRET_PATH
 
-with open("../secrets.json") as file:
+with open(SECRET_PATH) as file:
     SECRETS = json.load(file)
 
 
 def save_secrets():
     """Save current ``SECRETS```as .json-file."""
-    with open("../secrets.json", "w") as file:  # pylint: disable=redefined-outer-name
+    with open(SECRET_PATH, "w") as file:  # pylint: disable=redefined-outer-name
         json.dump(SECRETS, file, indent=4)
 
 

@@ -7,7 +7,8 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.remote.command import Command
 
-from boulder_stats.utils import is_future, is_open
+from utils import is_future, is_open
+from paths import HDF_PATH
 
 
 def visitor_df(html_source, date, max_slots=18):
@@ -44,15 +45,15 @@ def visitor_df(html_source, date, max_slots=18):
 
 @attr.s(auto_attribs=True)
 class DataCollector:
-    """Collect data from :attr:`url` and save it as hd5f-file."""
+    """Collect data from :attr:`url` and save it as hdf-file."""
 
     url: str = "https://187.webclimber.de/de/booking/offer/dein-slot"
     browser: webdriver.Firefox = None
     num_retries: int = 25
     retry_wait_time: float = 1
     max_visitors: int = 18
-    hd5f_path: str = "collected_data.h5"
-    hd5f_key: str = "raw"
+    hdf_path: str = HDF_PATH
+    hdf_key: str = "raw"
 
     @staticmethod
     def today():
@@ -113,11 +114,9 @@ class DataCollector:
         return self.get_df(dates)
 
     def save_df(self, df):
-        """Save the dataframe ``df`` with current timestamp as multi-index to hd5f-file."""
+        """Save the dataframe ``df`` with current timestamp as multi-index to hdf-file."""
         df_with_timestamp = pd.concat([df], keys=[pd.Timestamp.now()])
-        df_with_timestamp.to_hdf(
-            self.hd5f_path, key=self.hd5f_key, mode="a", append=True
-        )
+        df_with_timestamp.to_hdf(self.hdf_path, key=self.hdf_key, mode="a", append=True)
 
     def collect(self, n=7):
         """Main-function. Collect and save data."""
@@ -127,6 +126,6 @@ class DataCollector:
         self.save_df(df)
         self.close()
 
-    def read_df_from_hd5f(self):
-        """Load and return dataframe from hd5f file."""
-        return pd.read_hdf(self.hd5f_path, self.hd5f_key)
+    def read_df_from_hdf(self):
+        """Load and return dataframe from hdf file."""
+        return pd.read_hdf(self.hdf_path, self.hdf_key)

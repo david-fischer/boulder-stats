@@ -6,11 +6,12 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from boulder_stats.utils import (
+from utils import (
     box_plot_df,
     get_colors_for_df,
     get_slots,
 )
+from paths import HDF_PATH
 
 
 def nice_plot(df):
@@ -45,8 +46,8 @@ def calc_cummulated_visitors(df):
 class Analyzer:
     """Handles the data_analysis of the obtained raw data."""
 
-    hd5f_path: str = "collected_data.h5"
-    hd5f_key: str = "raw"
+    hdf_path: str = HDF_PATH
+    hdf_key: str = "raw"
     raw_df: pd.DataFrame = None
     max_visitors: int = 18
 
@@ -54,12 +55,12 @@ class Analyzer:
         self.reload()
 
     def reload(self):
-        """Update :attr:`raw_df` from hd5f file."""
-        self.raw_df = self.read_df_from_hd5f()
+        """Update :attr:`raw_df` from hdf file."""
+        self.raw_df = self.read_df_from_hdf()
 
-    def read_df_from_hd5f(self):
-        """Return object saved under :attr:`hd5f_path` with key :attr:`hd5f_key`."""
-        return pd.read_hdf(self.hd5f_path, self.hd5f_key)
+    def read_df_from_hdf(self):
+        """Return object saved under :attr:`hdf_path` with key :attr:`hdf_key`."""
+        return pd.read_hdf(self.hdf_path, self.hdf_key)
 
     def time_series(self, slot):
         """Return time series of booked slots up to the slot time."""
