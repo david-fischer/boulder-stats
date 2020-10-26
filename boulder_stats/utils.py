@@ -1,5 +1,7 @@
 """Helper functions."""
 import pandas as pd
+from matplotlib import pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 
 OPENING_TIME = "09:00"
 CLOSING_TIME = "23:00"
@@ -42,3 +44,44 @@ def next_weekday(datetime, weekday):
     if days_ahead < 0:  # Target day already happened this week
         days_ahead += 7
     return datetime + pd.Timedelta(days=days_ahead)
+
+
+def get_colors_for_df(df, list_of_colors=None, fix_max=None):
+    """Interpolate between ``list_of_colors`` to get ``N=fix_max or max(df)`` different color shades.
+
+    Return list with appropriate colors depending on y-value of ``df``.
+    """
+    list_of_colors = list_of_colors or ["tab:green", "gold", "tab:red"]
+    color_palette = LinearSegmentedColormap.from_list(
+        "ampel", list_of_colors, N=fix_max or max(df),
+    )
+    colors = color_palette([int(x) for x in df.fillna(0)])
+    return colors
+
+
+def add_numbers_to_boxplot(df, color=None):
+    """Add entries of df as text at appropriate height and with color ``color[i]`` in plot."""
+    for i, (index, data) in enumerate(df.items()):
+        print(i)
+        plt.text(
+            x=index,
+            y=data + 1.0,
+            s=f"{data:.0f}" if data > 0 else "",
+            fontweight="bold",
+            color=color[i] if color is not None and i < len(color) else None,
+            ha="center",
+        )
+
+
+def box_plot_df(
+    df, key, x=None, width=20, colors=None, add_nums=True,
+):
+    """Make a box plot from ``df[key]``."""
+    x = x or df.index
+    y = df[key]
+    plt_kwargs = {}
+    if colors is not None:
+        plt_kwargs["color"] = colors
+    if add_nums:
+        add_numbers_to_boxplot(df[key], **plt_kwargs)
+    plt.bar(x, y, label=key, width=width, **plt_kwargs)
