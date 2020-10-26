@@ -1,4 +1,9 @@
-"""Helper functions."""
+"""Helper functions.
+
+So far:
+    * timestamp manipulation
+    * plotting
+"""
 import pandas as pd
 from matplotlib import pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
