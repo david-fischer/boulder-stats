@@ -48,7 +48,7 @@ class DataCollector:
 
     url: str = "https://187.webclimber.de/de/booking/offer/dein-slot"
     browser: webdriver.Firefox = None
-    num_retries: int = 10
+    num_retries: int = 25
     retry_wait_time: float = 1
     max_visitors: int = 18
     hd5f_path: str = "collected_data.h5"
