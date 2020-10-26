@@ -96,7 +96,7 @@ class Analyzer:
         plt.title(f"{day} (last updated: {self.last_actualized()})")
         buff = io.BytesIO()
         plt.savefig(buff, format="png")
-        # plt.close()
+        plt.close()
         buff.seek(0)
         return buff
 
