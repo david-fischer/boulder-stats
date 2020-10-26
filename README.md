@@ -4,6 +4,15 @@
 
 ### Installation
 
+* Set up a Telegram-Bot. #TODO: links and instructions
+* pip install ...
+* boulder_stats setup -t <TOKEN> #TODO
+* boulder_stats get_unlock_pw #TODO
+* add bot to conversation
+* /unlock <UNLOCK_PW>
+
+Now the bot responds to commands in this chat.
+
 ```
 
 ```
