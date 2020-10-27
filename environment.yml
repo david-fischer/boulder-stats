@@ -1,0 +1,10 @@
+name: boulder-stats
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - pytables
+  - pylint
+  - pandas
+prefix: /home/david/anaconda3/envs/boulder-stats

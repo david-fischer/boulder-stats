@@ -11,3 +11,4 @@ python-telegram-bot
 requests
 selenium~=3.141.0
 setuptools~=49.6.0
+xvfbwrapper~=0.2.9

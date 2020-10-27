@@ -1,0 +1,6 @@
+FROM oneoffcoder/rpi-miniconda
+ADD . boulder-stats
+WORKDIR boulder-stats
+RUN /root/miniconda/bin/conda install python pandas pytables pylint matplotlib
+RUN sudo apt install xvfb; /root/miniconda/bin/pip install .
+ENTRYPOINT [ "/root/miniconda/bin/boulder_stats" ]
