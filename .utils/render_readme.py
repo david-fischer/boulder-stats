@@ -13,7 +13,7 @@ JINJA_OUT_REGEX = r"<!-- jinja-out %s.*-->"
 def get_reqs_urls_summaries():
     with open("requirements.txt") as file:
         req_string = file.read()
-    reqs = re.findall("^[A-Za-z_0-9]+", req_string, flags=re.MULTILINE)
+    reqs = re.findall("^[A-Za-z_0-9\-]+", req_string, flags=re.MULTILINE)
     urls = []
     summaries = []
     for package in reqs:
