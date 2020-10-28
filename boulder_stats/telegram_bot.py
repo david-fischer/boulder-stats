@@ -124,6 +124,7 @@ class Bot:
     def set_password(self, password):
         """Set unlock password."""
         self.secrets["unlock_pw"] = password
+        self.save_secrets()
 
     def add_handler(self, cmd, function):
         """Add handler to listen to.
