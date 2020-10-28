@@ -48,6 +48,10 @@ class Bot:
         self.analyzer = Analyzer()
         self.updater = Updater(token=self.secrets["token"], use_context=True)
         self.dispatcher = self.updater.dispatcher
+        self._init_handlers()
+
+    def _init_handlers(self):
+        self.add_handlers(plot=self.plot, unlock=self.unlock)
 
     def load_secrets(self):
         """Load :attr:`secrets` from :attr:`secret_path`."""
@@ -126,13 +130,14 @@ class Bot:
         self.secrets["unlock_pw"] = password
         self.save_secrets()
 
-    def add_handler(self, cmd, function):
+    def add_handlers(self, **kwargs):
         """Add handler to listen to.
 
         The bot executes ``function`` with the user writes ``/cmd arg1 arg2 ...". Arguments are available via
         ``context.args``.
         """
-        self.dispatcher.add_handler(CommandHandler(cmd, function))
+        for cmd, function in kwargs.items():
+            self.dispatcher.add_handler(CommandHandler(cmd, function))
 
 
 def start_bot():
