@@ -14,7 +14,7 @@ def start_data_collection():
     )
     scheduler = BlockingScheduler()
     data_collector = DataCollector()
-    scheduler.add_job(data_collector.collect, trigger="cron", minute="15,23,24,45")
+    scheduler.add_job(data_collector.collect, trigger="cron", minute="15,45")
     scheduler.start()
 
 
