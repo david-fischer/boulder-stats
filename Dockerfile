@@ -16,4 +16,4 @@ WORKDIR boulder-stats
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 ADD . .
-ENTRYPOINT [ "python", "click_cli.py"]
+ENTRYPOINT [ "python", "cli_wrapper.py"]
