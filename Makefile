@@ -26,3 +26,10 @@ update_readme:
 	python .utils/render_readme.py
 	git commit README.md -m "update: README"
 	git push origin master
+
+docker:
+	sudo docker build -t boulder . -f Dockerfile
+
+run_docker:
+	sudo docker run -v boulder_vol:/boulder-stats/ -t boulder:latest bot start
+	sudo docker run -v boulder_vol:/boulder-stats/ -t boulder:latest data schedule
