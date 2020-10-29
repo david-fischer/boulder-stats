@@ -95,10 +95,8 @@ jinja-block deps-->
  * [attrs](https://www.attrs.org/) - Classes Without Boilerplate
  * [beautifulsoup4](http://www.crummy.com/software/BeautifulSoup/bs4/) - Screen-scraping library
  * [click](https://palletsprojects.com/p/click/) - Composable command line interface toolkit
- * [Fire](https://github.com/google/python-fire) - A library for automatically generating command line interfaces.
  * [jinja2](https://palletsprojects.com/p/jinja/) - A very fast and expressive template engine.
  * [matplotlib](https://matplotlib.org) - Python plotting package
- * [mechanicalsoup](https://mechanicalsoup.readthedocs.io/) - A Python library for automating interaction with websites
  * [numpy](https://www.numpy.org) - NumPy is the fundamental package for array computing with Python.
  * [pandas](https://pandas.pydata.org) - Powerful data structures for data analysis, time series, and statistics
  * [python-telegram-bot](https://python-telegram-bot.org/) - We have made you a wrapper you can't refuse
