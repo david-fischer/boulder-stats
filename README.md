@@ -74,7 +74,8 @@ Options:
   -h, --help  Show this message and exit.
 
 Commands:
-  collect  Use scheduler to periodically collect data.
+  collect   Collect data for the next 7 days.
+  schedule  Use scheduler to periodically collect data for the next 7 days.
 
 ```
 <!-- jinja-out help end-->
@@ -100,7 +101,6 @@ jinja-block deps-->
  * [numpy](https://www.numpy.org) - NumPy is the fundamental package for array computing with Python.
  * [pandas](https://pandas.pydata.org) - Powerful data structures for data analysis, time series, and statistics
  * [python-telegram-bot](https://python-telegram-bot.org/) - We have made you a wrapper you can't refuse
- * [requests](https://requests.readthedocs.io) - Python HTTP for Humans.
  * [selenium](https://github.com/SeleniumHQ/selenium/) - Python bindings for Selenium
  * [setuptools](https://github.com/pypa/setuptools) - Easily download, build, install, upgrade, and uninstall Python packages
  * [xvfbwrapper](https://github.com/cgoldberg/xvfbwrapper) - run headless display inside X virtual framebuffer (Xvfb)
