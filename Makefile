@@ -21,3 +21,8 @@ docs:
 rpi_push:
 	ssh pi@nextcloudpi.local mv /home/pi/boulder-stats "/home/pi/bs_$(shell date +%F_%T)"
 	scp -r ${CURDIR} pi@nextcloudpi.local:/home/pi/boulder-stats
+
+update_readme:
+	python .utils/render_readme.py
+	git commit README.md -m "update: README"
+	git push origin master
