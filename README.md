@@ -1,45 +1,50 @@
 <h1 align="center">boulder-stats</h1>
+<div><img align="left" height=400 src="assets/screenshot.png">
+<p>
+Data collection script and telegram-bot to monitor the local Boulderhaus' booking state.
+It shows the currently booked spots for each timeslot and the average number of visitors during the whole stay.
+</p>
+</div>
 
 ## 🚧 Setup
 
 ### Installation
 
 * Set up a Telegram-Bot. #TODO: links and instructions
-* pip install ...
-* boulder_stats setup -t <TOKEN> #TODO
-* boulder_stats get_unlock_pw #TODO
+* See Dockerfile for installation steps or use Docker in the first place
+* boulder_stats bot setup
+* boulder_stats bot start
+* boulder_stats data schedule
 * add bot to conversation
 * /unlock <UNLOCK_PW>
 
 Now the bot responds to commands in this chat.
 
-```
-
-```
-
 ## 🔧 Usage
 
-Usage example:
-
+Bot commands:
 ```
-
+/plot <args>
+/unlock <pw>
 ```
 
 <!-- jinja-block help
-Help text:
-
+Help text of CLI:
 ```
 > boulder_stats -h
 {{ execute_command("python cli_wrapper.py -h") }}
+```
+```
 > boulder_stats bot -h
 {{ execute_command("python cli_wrapper.py bot -h") }}
+```
+```
 > boulder_stats data -h
 {{ execute_command("python cli_wrapper.py data -h") }}
 ```
 jinja-block help-->
 <!-- jinja-out help start-->
-Help text:
-
+Help text of CLI:
 ```
 > boulder_stats -h
 Usage: boulder_stats [OPTIONS] COMMAND [ARGS]...
@@ -53,6 +58,8 @@ Commands:
   bot   Call bot functions.
   data  Call data functions.
 
+```
+```
 > boulder_stats bot -h
 Usage: boulder_stats bot [OPTIONS] COMMAND [ARGS]...
 
@@ -65,6 +72,8 @@ Commands:
   setup  Set token and password of bot.
   start  Start the bot.
 
+```
+```
 > boulder_stats data -h
 Usage: boulder_stats data [OPTIONS] COMMAND [ARGS]...
 
