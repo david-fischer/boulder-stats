@@ -1,10 +1,13 @@
-<h1 align="center">boulder-stats</h1>
-<div><img align="left" height=400 src="assets/screenshot.png">
-<p>
-Data collection script and telegram-bot to monitor the local Boulderhaus' booking state.
-It shows the currently booked spots for each timeslot and the average number of visitors during the whole stay.
-</p>
+
+
+<div><h1 align="center">boulder-stats</h1>
+	<img align="left" height=400 src="assets/screenshot.png">
+	<p>
+		Data collection script and telegram-bot to monitor the local Boulderhaus' booking state.
+		It shows the currently booked spots for each timeslot and the average number of visitors during the whole stay.
+	</p>
 </div>
+
 
 ## 🚧 Setup
 
