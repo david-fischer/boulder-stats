@@ -11,7 +11,7 @@ from .data_collector import DataCollector
 from .telegram_bot import Bot
 
 matplotlib.use("Agg")
-vdisplay = Xvfb(height=1024, width=1920)
+vdisplay = Xvfb()
 vdisplay.start()
 
 pass_bot = click.make_pass_decorator(Bot, ensure=True)
