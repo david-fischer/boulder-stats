@@ -1,16 +1,22 @@
 """This script provides the main function which serves as entry-point for setup.py."""
 import logging
+
 import click
 import matplotlib
+from apscheduler.schedulers.blocking import BlockingScheduler
 from xvfbwrapper import Xvfb
-from boulder_stats.scheduler import start_data_collection
-from boulder_stats.telegram_bot import Bot
+
+from .data_analysis import Analyzer
+from .data_collector import DataCollector
+from .telegram_bot import Bot
 
 matplotlib.use("Agg")
 vdisplay = Xvfb(height=1024, width=1920)
 vdisplay.start()
 
 pass_bot = click.make_pass_decorator(Bot, ensure=True)
+pass_dc = click.make_pass_decorator(DataCollector, ensure=True)
+pass_da = click.make_pass_decorator(Analyzer, ensure=True)
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
 
@@ -54,7 +60,30 @@ def data():
     """Call data functions."""
 
 
-data.command(name="collect")(start_data_collection)
+@data.command()
+@pass_dc
+def schedule(data_collector):
+    """Use scheduler to periodically collect data for the next 7 days."""
+    scheduler = BlockingScheduler()
+    scheduler.add_job(data_collector.collect, trigger="cron", minute="15,45")
+    scheduler.start()
+
+
+@data.command()
+@pass_dc
+def collect(data_collector):
+    """Collect data for the next 7 days."""
+    data_collector.collect()
+
+
+# @data.command()
+# @pass_da
+# def show(analyzer, date=pd.Timestamp.today()):
+#     df = analyzer.get_currently_booked_day(date)
+#     calc_cummulated_visitors(df)
+#     nice_plot(df)
+#     plt.show()
+
 
 if __name__ == "__main__":
     cli()
