@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """This script provides the main function which serves as entry-point for setup.py."""
 import logging
 import click

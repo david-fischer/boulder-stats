@@ -30,9 +30,11 @@ Help text:
 
 ```
 > boulder_stats -h
-
-{{ execute_command("./boulder_stats/cli.py -h | exit") }}
-
+{{ execute_command("python cli_wrapper.py -h") }}
+> boulder_stats bot -h
+{{ execute_command("python cli_wrapper.py bot -h") }}
+> boulder_stats data -h
+{{ execute_command("python cli_wrapper.py data -h") }}
 ```
 jinja-block help-->
 <!-- jinja-out help start-->
@@ -40,24 +42,39 @@ Help text:
 
 ```
 > boulder_stats -h
+Usage: boulder_stats [OPTIONS] COMMAND [ARGS]...
 
-INFO: Showing help with the command 'cli.py -- --help'.
+  Collect data and control telegram bot, that can plot the data.
 
-NAME
-    cli.py
+Options:
+  -h, --help  Show this message and exit.
 
-SYNOPSIS
-    cli.py COMMAND
+Commands:
+  bot   Call bot functions.
+  data  Call data functions.
 
-COMMANDS
-    COMMAND is one of the following:
+> boulder_stats bot -h
+Usage: boulder_stats bot [OPTIONS] COMMAND [ARGS]...
 
-     start_bot
-       Start bot.
+  Call bot functions.
 
-     collect_data
-       Use scheduler to periodically collect data.
+Options:
+  -h, --help  Show this message and exit.
 
+Commands:
+  setup  Set token and password of bot.
+  start  Start the bot.
+
+> boulder_stats data -h
+Usage: boulder_stats data [OPTIONS] COMMAND [ARGS]...
+
+  Call data functions.
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  collect  Use scheduler to periodically collect data.
 
 ```
 <!-- jinja-out help end-->
@@ -77,6 +94,7 @@ jinja-block deps-->
  * [apscheduler](https://github.com/agronholm/apscheduler) - In-process task scheduler with Cron-like capabilities
  * [attrs](https://www.attrs.org/) - Classes Without Boilerplate
  * [beautifulsoup4](http://www.crummy.com/software/BeautifulSoup/bs4/) - Screen-scraping library
+ * [click](https://palletsprojects.com/p/click/) - Composable command line interface toolkit
  * [Fire](https://github.com/google/python-fire) - A library for automatically generating command line interfaces.
  * [jinja2](https://palletsprojects.com/p/jinja/) - A very fast and expressive template engine.
  * [matplotlib](https://matplotlib.org) - Python plotting package
