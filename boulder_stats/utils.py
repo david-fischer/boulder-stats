@@ -34,7 +34,7 @@ def is_open(datetime):
     time = datetime.time()
     earlier_days = {6, 7}
     start = pd.Timestamp("10:00" if dow not in earlier_days else "09:00").time()
-    end = pd.Timestamp("22:00").time()
+    end = pd.Timestamp("21:30").time()
     return start <= time <= end
 
 
