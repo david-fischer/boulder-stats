@@ -17,12 +17,12 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
 @click.group(context_settings=CONTEXT_SETTINGS)
 def cli():
-    """This script bli-bla-blubb."""
+    """Collect data and control telegram bot, that can plot the data."""
 
 
 @cli.group("bot")
 def bot_cli():
-    """Subcommands concerning bot."""
+    """Call bot functions."""
 
 
 @bot_cli.command("start")
@@ -52,7 +52,7 @@ def setup_bot(bot, token, password):
 
 @cli.group("data")
 def data():
-    """Data operations."""
+    """Call data functions."""
 
 
 data.command(name="collect")(start_data_collection)
