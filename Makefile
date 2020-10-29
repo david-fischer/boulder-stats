@@ -31,5 +31,5 @@ docker:
 	sudo docker build -t boulder . -f Dockerfile
 
 run_docker:
-	sudo docker run -v boulder_vol:/boulder-stats/ -t boulder:latest bot start
-	sudo docker run -v boulder_vol:/boulder-stats/ -t boulder:latest data schedule
+	sudo docker run --rm -d -v boulder_vol:/boulder-stats/ -t boulder:latest bot start
+	sudo docker run --rm -d -v boulder_vol:/boulder-stats/ -t boulder:latest data schedule
