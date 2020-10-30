@@ -1,7 +1,7 @@
 
 
 <div><h1 align="center">boulder-stats</h1>
-	<img align="left" height=400 src="assets/screenshot.png">
+	<img align="left" height=450 src="assets/screenshot.png">
 	<p>
 		Data collection script and telegram-bot to monitor the local Boulderhaus' booking state.
 		It shows the currently booked spots for each timeslot and the average number of visitors during the whole stay.
@@ -11,13 +11,18 @@
 
 ## 🚧 Setup
 
-### Installation
+### Installation (not yet tested)
 
-* Set up a Telegram-Bot. #TODO: links and instructions
-* See Dockerfile for installation steps or use Docker in the first place
-* boulder_stats bot setup
-* boulder_stats bot start
-* boulder_stats data schedule
+* Set up a Telegram-Bot (https://core.telegram.org/bots)
+* ```
+  git clone https://github.com/david-fischer/boulder-stats.git
+  cd boulder-stats
+  pip install .
+  boulder_stats bot setup
+  boulder_stats bot start &s
+  boulder_stats data schedule
+  ```
+```
 * add bot to conversation
 * /unlock <UNLOCK_PW>
 
@@ -32,22 +37,24 @@ Bot commands:
 ```
 
 <!-- jinja-block help
-Help text of CLI:
+Help text of Command line interface to control bot and data-collection:
 ```
 > boulder_stats -h
 {{ execute_command("python cli_wrapper.py -h") }}
 ```
+
 ```
 > boulder_stats bot -h
 {{ execute_command("python cli_wrapper.py bot -h") }}
 ```
+
 ```
 > boulder_stats data -h
 {{ execute_command("python cli_wrapper.py data -h") }}
 ```
 jinja-block help-->
 <!-- jinja-out help start-->
-Help text of CLI:
+Help text of Command line interface to control bot and data-collection:
 ```
 > boulder_stats -h
 Usage: boulder_stats [OPTIONS] COMMAND [ARGS]...
@@ -62,6 +69,7 @@ Commands:
   data  Call data functions.
 
 ```
+
 ```
 > boulder_stats bot -h
 Usage: boulder_stats bot [OPTIONS] COMMAND [ARGS]...
@@ -76,6 +84,7 @@ Commands:
   start  Start the bot.
 
 ```
+
 ```
 > boulder_stats data -h
 Usage: boulder_stats data [OPTIONS] COMMAND [ARGS]...
@@ -96,7 +105,6 @@ Commands:
 
 ## 🎯 Troubleshooting
 
-*
 
 
 ## 📦 Dependencies
@@ -117,3 +125,5 @@ jinja-block deps-->
  * [setuptools](https://github.com/pypa/setuptools) - Easily download, build, install, upgrade, and uninstall Python packages
  * [xvfbwrapper](https://github.com/cgoldberg/xvfbwrapper) - run headless display inside X virtual framebuffer (Xvfb)
 <!-- jinja-out deps end-->
+
+```
