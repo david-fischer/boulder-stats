@@ -19,7 +19,7 @@
   cd boulder-stats
   pip install .
   boulder_stats bot setup
-  boulder_stats bot start &s
+  boulder_stats bot start &
   boulder_stats data schedule
   ```
 
