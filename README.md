@@ -22,7 +22,7 @@
   boulder_stats bot start &s
   boulder_stats data schedule
   ```
-```
+
 * add bot to conversation
 * /unlock <UNLOCK_PW>
 
